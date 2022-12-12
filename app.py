@@ -1,20 +1,21 @@
 from flask import Flask, request
-import requests
-import time
 from concurrent.futures import ProcessPoolExecutor
+import requests
+import logging
+
 
 app = Flask(__name__)
 
-MAX_THREADS = 4
+MAX_THREADS = 100
 
 
-# Function to get
+# Function to send request
 def fetch_url_data(url):
     r = requests.get(url)
     if r.status_code == 200:
         return r.json()
     else:
-        print(f"There was an error fetching url: {url}")
+        logging.warning(f"There was an error with status code: {r.status_code} while trying to get data from: {url}")
         return {}
 
 
