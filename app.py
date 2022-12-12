@@ -15,6 +15,7 @@ def fetch_url_data(url):
     if r.status_code == 200:
         return r.json()
     else:
+        logging.basicConfig(filename='app.log', filemode='w', format='%(asctime)s - %(message)s', level=logging.WARNING)
         logging.warning(f"There was an error with status code: {r.status_code} while trying to get data from: {url}")
         return {}
 
