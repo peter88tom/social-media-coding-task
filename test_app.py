@@ -12,4 +12,4 @@ def test_fetch_url_data(default_urls):
     for url in default_urls:
         response = requests.get(url)
 
-        assert response.status_code == 200
+        assert response.status_code == 500
